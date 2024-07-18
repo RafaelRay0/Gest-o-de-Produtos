@@ -1,8 +1,11 @@
 # Gestão de produtos
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# Projeto React.js com API em Node.js
 
-Currently, two official plugins are available:
+Este projeto consiste em uma aplicação frontend em React.js que consome uma API desenvolvida em Node.js para gerenciar produtos. A aplicação permite visualizar, adicionar, atualizar e deletar produtos.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Configuração e Execução Local
+
+### clone reporsitorio com git clone 
+### rode o comando com npm install para baixar dependecias
+### execute o comando npm run dev
