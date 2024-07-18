@@ -16,16 +16,15 @@ function App() {
 
   const carregarProdutos = () => {
     setCarregando(true);
-    fetch('http://localhost:3000/products')
+    fetch('http://localhost:4000/produtos')
       .then(response => response.json())
       .then(result => {
         setProdutos(result);
-        setCarregando(false);
       })
       .catch(error => {
         console.error('Erro ao carregar produtos:', error);
-        setCarregando(false);
       });
+      setCarregando(false);
   };
 
   const onClickAdicionarProduto = () => {
@@ -38,17 +37,17 @@ function App() {
 
   const onClickEditar = (item) => {
     setId(item?.id);
-    setNome(item?.name);
-    setDescricao(item?.description);
-    setPreco(item?.price);
+    setNome(item?.nome);
+    setDescricao(item?.descricao);
+    setPreco(item?.preco);
     setAbrir(true);
   };
 
   const salvarProduto = async () => {
-    let obj = { name: nome, description: descricao, price: preco };
+    let obj = { nome: nome, descricao: descricao, preco: preco };
     if (id) {
       try {
-        const response = await fetch(`http://localhost:3000/products/${id}`, {
+        const response = await fetch(`http://localhost:4000/produtos/${id}`, {
           method: 'PUT',
           headers: {
             'Content-Type': 'application/json'
@@ -66,7 +65,7 @@ function App() {
       }
     } else {
       try {
-        const response = await fetch('http://localhost:3000/products', {
+        const response = await fetch('http://localhost:4000/produtos', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
@@ -88,7 +87,7 @@ function App() {
 
   const deletarProduto = async (id) => {
     try {
-      const response = await fetch(`http://localhost:3000/products/${id}`, {
+      const response = await fetch(`http://localhost:4000/produtos/${id}`, {
         method: 'DELETE'
       });
       if (response.ok) {
@@ -105,22 +104,27 @@ function App() {
   return (
     <div className="App flex flex-col gap-5 w-[1157px]">
       <h1>Gestão de Produtos</h1>
-      <button className='w-[200px]' onClick={onClickAdicionarProduto}>Adicionar Produto</button>
+      <button className='w-[200px] bg-green-600' onClick={onClickAdicionarProduto}>
+        Adicionar Produto
+      </button>
       {carregando ? (
         <p>Carregando...</p>
       ) : (
         <ul className='flex flex-col gap-2'>
-          {produtos.map(produto => (
-            <li className='flex gap-5 justify-between' key={produto.id}>
-              {`Nome: ${produto.name}`} - {`Descrição: ${produto.description}`} - {`Preço: R$ ${produto.price}`}
-              <div className='flex gap-5 '>
-                <button onClick={() => onClickEditar(produto)}>
+          {produtos?.map((item, index) => (
+            <li className='border border-gray-600 p-4 rounded-lg flex flex-col items-start flex-wrap gap-5 justify-between' key={index}>
+              <p className='font-bold'>Nome: {item?.nome}</p>
+                <small>Descrição: {item?.descricao} | Preço: R$ {item?.preco}</small>
+                <small>Dt. de Criação: {item?.data_de_criacao}</small>
+              <div className='flex gap-3'>
+                <button onClick={() => onClickEditar(item)}>
                   <p>Editar</p>
                 </button>
-                <button onClick={() => deletarProduto(produto.id)}>
+                <button className='bg-red-700' onClick={() => deletarProduto(item.id)}>
                  <p>Deletar</p>
                 </button>
               </div>
+              <hr/>
             </li>
           ))}
         </ul>
