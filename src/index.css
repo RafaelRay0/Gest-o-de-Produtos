@@ -10,7 +10,9 @@ html {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
-  background-color: #0b0f0b;
+  background-image: url(assets/bg.jpeg);
+  background-attachment: fixed;
+  background-size: cover;
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
   font-synthesis: none;

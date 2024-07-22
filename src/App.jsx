@@ -116,8 +116,8 @@ function App() {
         <ul className='flex flex-col gap-2'>
           {produtos?.map((item, index) => (
             <li className='border border-gray-600 p-4 rounded-lg flex flex-col items-start flex-wrap gap-5 justify-between ' key={index}>
-              <p className='font-bold text-[18px]'>Nome: {item?.nome}</p>
-              <small>Descrição: <span className='text-yellow-300'>{item?.descricao}</span> | Preço: <span className='text-lime-500'>R${item?.preco}</span></small>
+              <p className='font-bold text-[18px]'>Nome: <span className='text-zinc-400'>{item?.nome}</span></p>
+              <small>Descrição: {item?.descricao} | Preço: R${item?.preco}</small>
               <small>Dt. de Criação: {item?.data_de_criacao}</small>
               <div id='teste' className='flex gap-3'>
                 <a href="#adicionar">
